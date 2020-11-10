@@ -6,15 +6,17 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-
 import org.json.JSONObject;
 
 public class dataSetManager {
-	private int numDatasets;
-	private JSONObject datasets;
-	private List<String> allFileTypes;
-	private List<String> allTags;
+	private int numDatasets;                     // number of datasests being managed 
+	private JSONObject datasets;                 // the object containing all of our datasets
+	private List<String> allFileTypes;           // will hold a set of available file types based on input data sets
+	private List<String> allTags;                // will hold a set of available tags based on input data sets
 	
+	/**
+	* Default Constructor
+	*/
 	public dataSetManager() {
 		this.numDatasets = 0;
 		this.datasets = new JSONObject();
