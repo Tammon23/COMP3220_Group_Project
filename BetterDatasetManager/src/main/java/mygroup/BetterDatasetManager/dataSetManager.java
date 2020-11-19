@@ -6,23 +6,31 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+
 import org.json.JSONObject;
 
 public class dataSetManager {
-	private int numDatasets;                     // number of datasests being managed 
-	private JSONObject datasets;                 // the object containing all of our datasets
-	private List<String> allFileTypes;           // will hold a set of available file types based on input data sets
-	private List<String> allTags;                // will hold a set of available tags based on input data sets
+	private int numDatasets;
+	private JSONObject datasets;
+	private List<String> allFileTypes;
+	private List<String> allTags;
 	
-	/**
-	* Default Constructor
-	*/
 	public dataSetManager() {
 		this.numDatasets = 0;
 		this.datasets = new JSONObject();
 		this.allFileTypes = new ArrayList<String>();
 		this.allTags = new ArrayList<String>();
 		
+	}
+	
+	/**
+	 * This method will increment the attribute stored under the key "timesAccessed" in the JSON file.
+	 * This is called by PortalPanel every time a button is pressed
+	 * @param dataSetName - the name of the JSON Object that was accessed and needs to be incremented
+	 */
+	public void incrementSetTimesAccessed(String dataSetName) {
+		JSONObject setToInc = (JSONObject) datasets.get(dataSetName);
+		setToInc.increment("timesAccessed");
 	}
 	
 	public List<String> getAvailableFileTypes(){
