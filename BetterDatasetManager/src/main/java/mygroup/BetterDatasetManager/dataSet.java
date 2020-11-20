@@ -20,11 +20,11 @@ public class dataSet implements Comparable<dataSet>{
 	public dataSet() {}
 	
 	/**
-	 * 
-	 * @param link the link to the dataset
-	 * @param title the title of the dataset
-	 * @param desc is a description of the dataset
-	 * @param tags tags assositated to the dataset
+	 * Constructor for making a data set from raw inputs
+	 * @param link the link to the data set
+	 * @param title the title of the data set
+	 * @param desc is a description of the data set
+	 * @param tags tags associated to the data set
 	 */
 	public dataSet(String link, String title, String desc, ArrayList<String> tags, ArrayList<String> fileTypes) {
 		this.link = link;
@@ -32,16 +32,46 @@ public class dataSet implements Comparable<dataSet>{
 		this.desc = desc;
 		this.tags = tags;
 		this.fileTypes = fileTypes;
+		this.timesAccessed = 0;
 	}
 	
+	/**
+	 * Constructor for making a data set from JSON object
+	 * @param link the link to the data set
+	 * @param title the title of the data set
+	 * @param desc is a description of the data set
+	 * @param tags tags associated to the data set
+	 */
+	public dataSet(JSONObject saved_dataset_json) {
+		this.link = (String) saved_dataset_json.get("link");
+		this.title = (String) saved_dataset_json.get("title");
+		this.desc = (String) saved_dataset_json.get("desc");
+		this.timesAccessed = (Integer)saved_dataset_json.get("timesAccessed");
+		this.tags = new ArrayList<String>();
+		this.fileTypes = new ArrayList<String>();
+		
+		JSONArray json_tags = (JSONArray) saved_dataset_json.get("tags");
+		JSONArray json_fileTypes = (JSONArray) saved_dataset_json.get("fileTypes");
+		
+		
+		for (int i = 0; i < json_tags.length(); i++) {
+			this.tags.add(json_tags.getString(i));
+		}
+		
+		for (int i = 0; i < json_fileTypes.length(); i++) {
+			this.fileTypes.add(json_fileTypes.getString(i));
+		}	
+
+	}
 	
 
 	/**
-	 * Creates a the json representation of a datasets
+	 * Creates a the JSON representation of a data sets
 	 * @return JSONObject
 	 */
 	public JSONObject toJson() {
 		JSONObject jo = new JSONObject();
+		jo.put("timesAccessed", this.timesAccessed);
 		jo.put("link", this.link);
 		jo.put("title", this.title);
 		jo.put("desc", this.desc);
