@@ -33,10 +33,10 @@ public class PortalPanel extends JPanel{
 		linkButtons = new JButton[numDataSets];
 		
 		String[] dataNames = JSONObject.getNames(dataSets);
-		System.out.println();
-		for(int i = 0; i < dataNames.length; i++) {
-			System.out.println(dataNames[i]);
-		}
+//		System.out.println();
+//		for(int i = 0; i < dataNames.length; i++) {
+//			System.out.println(dataNames[i]);
+//		}
 		
 		for(int i = 0; i < numDataSets; i++) {
 			final JSONObject tempJSON = (JSONObject) dataSets.get(dataNames[i]);

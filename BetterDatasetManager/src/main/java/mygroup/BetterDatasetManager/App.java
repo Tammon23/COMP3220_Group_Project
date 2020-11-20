@@ -7,8 +7,12 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.Iterator;
+import java.util.List;
 
 import javax.swing.JFrame;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 //TODO add functionality to the populate the allTags and allFileTypes attributes
 
@@ -21,26 +25,27 @@ public class App
     	manager.loadFromFile("test.json");
     	
     	//Swing components
-    	JFrame portalFrame = new JFrame("Portal Frame");	//This is the window frame that holds the panel
-    	PortalPanel portalPanel;	//This is the panel that holds all the buttons
+    	JFrame portalFrame = new JFrame("Portal Frame");
+    	PortalPanel portalPanel;
     	
-    	portalFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);	//Set the program to end when the frame is closed
-    	portalFrame.setSize(900,600);					//Set an arbitrary size of the frame
-    	portalFrame.setVisible(true);					//Make the frame actually visible
+    	getSortedJSONArray(manager.getDatasets().toJSONArray(manager.getDatasets().names()));
     	
-	//Instantiate the panel with the list of datasets and the number of datasets
-    	portalPanel = new PortalPanel(manager.getDatasets(), manager.getnumDatasets());
-    	portalFrame.add(portalPanel);	//Add the panel to the frame
+    	portalFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    	portalFrame.setSize(900,600);
+//    	portalFrame.setLayout(new FlowLayout());
+    	portalFrame.setVisible(true);
     	
-    	portalFrame.revalidate();	//revalidate the frame to show the buttons that were added to the panel on instantiation
+    	portalPanel = new PortalPanel(manager);
+    	portalFrame.add(portalPanel);
     	
-    	// list of saved datasets
-    	System.out.println("List of saved datasets:\n\n");
-    	for (String key: manager.getDatasets().keySet()) {
-    		System.out.println(key);
-    	}
+    	portalFrame.revalidate();
+    	
+//    	// list of saved datasets
+//    	System.out.println("List of saved datasets:\n\n");
+//    	for (String key: manager.getDatasets().keySet()) {
+//    		System.out.println(key);
+//    	}
   
-//    	openWebpage("https://google.com");
     	
     	
     }
@@ -57,6 +62,24 @@ public class App
     	} catch (IOException | URISyntaxException e) {
 			;
 		}
+    }
+    
+    
+    public static JSONArray getSortedJSONArray(JSONArray jsArr) {
+    	JSONArray jsonArr = jsArr;
+    	
+    	//jsArr has an element for each JSONObject in the file, hence each dataset is its own element in this JSONArray
+    	
+    	
+    	
+    	
+    	for(int i = 0; i < jsonArr.length(); i++) {
+    		System.out.println("JSONObject " + i + ": " + jsonArr.get(i));
+    	}
+    	
+
+    	
+    	return jsonArr;
     }
 }
 /*
