@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Scanner;
 
 import org.json.JSONObject;
@@ -92,13 +93,14 @@ public class dataSetManager {
     				this.allTags.add(dataset_tags.get(j));
     			}
     		}
+    		
+    		// sorting the list of tags
+    		Collections.sort(this.allTags);
     	}
     	
     	
     	// parsing the string into our JSON object
     	this.datasets = dataset_list;
-
-//    	System.out.println(this.datasets.get("Alley Maintenance Service Requests"));
     }
     
     /**
@@ -122,7 +124,5 @@ public class dataSetManager {
     	
     	file.close();
     	
-    }
-    
-    
+    }    
 }
