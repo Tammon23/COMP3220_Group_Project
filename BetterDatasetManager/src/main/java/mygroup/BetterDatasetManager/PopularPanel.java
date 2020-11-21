@@ -24,7 +24,7 @@ public class PopularPanel extends JPanel{
 	public PopularPanel(final dataSetManager manager) {
 		this.setLayout(new FlowLayout());
 		this.manager = manager;
-		dataSets = manager.getDatasets();
+		dataSets = (ArrayList<dataSet>) manager.getDatasets().clone();
 		
 		//Sort dataSets, natively sorted by timesAccessed as defined in dataSet.java in ascending order
 		Collections.sort(dataSets);
@@ -45,12 +45,12 @@ public class PopularPanel extends JPanel{
 					// TODO Auto-generated method stub
 					dataSets.get(index).openWebpage();
 					
-					//Need to also increment the value in "timesAccessed" tag of this datasets info in the json file
+					//Need to also increment the value in "timesAccessed" tag of this datasets info in the JSON file
 					try {
 						//Update the timesAccessed variable in this dataset
 						dataSets.get(index).incrementTimesAccessed();
 						
-						//Update json file now that a value was incremented
+						//Update JSON file now that a value was incremented
 						manager.saveToFile("test.json");
 						
 					} catch (FileNotFoundException e1) {
