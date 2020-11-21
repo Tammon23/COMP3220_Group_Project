@@ -49,7 +49,6 @@ public class PopularPanel extends JPanel{
 					try {
 						//Update the timesAccessed variable in this dataset
 						dataSets.get(index).incrementTimesAccessed();
-						System.out.println(dataSets.get(index).getTitle() + " has been accessed " + (dataSets.get(index).getTimesAccessed()) + " times.");
 						
 						//Update json file now that a value was incremented
 						manager.saveToFile("test.json");

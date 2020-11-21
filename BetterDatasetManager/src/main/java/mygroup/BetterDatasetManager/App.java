@@ -61,5 +61,15 @@ public class App
     	portalFrame.revalidate();
     	
     	
+    	//Create the search frame
+    	JFrame searchFrame = new JFrame("Search Frame");
+    	SearchPanel searchPanel = new SearchPanel(manager);
+    	
+    	//Formatting
+    	searchFrame.add(searchPanel);
+    	searchFrame.setVisible(true);
+    	searchFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    	searchFrame.setSize(300,300);
+    	
     }
 }
