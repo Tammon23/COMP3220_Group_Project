@@ -1,5 +1,9 @@
 package mygroup.BetterDatasetManager;
 
+import java.awt.Desktop;
+import java.io.IOException;
+import java.net.URISyntaxException;
+import java.net.URL;
 import java.util.ArrayList;
 
 import org.json.JSONArray;
@@ -12,7 +16,7 @@ public class dataSet implements Comparable<dataSet>{
 	private ArrayList<String> tags;
 	private ArrayList<String> fileTypes;
 	
-	private Integer timesAccessed;
+	private int timesAccessed;
 	
 	/**
 	 * Default constructor
@@ -122,18 +126,35 @@ public class dataSet implements Comparable<dataSet>{
 		this.fileTypes = fileTypes;
 	}
 
-	public Integer getTimesAccessed() {
+	public int getTimesAccessed() {
 		return timesAccessed;
 	}
 
-	public void setTimesAccessed(Integer timesAccessed) {
+	public void setTimesAccessed(int timesAccessed) {
 		this.timesAccessed = timesAccessed;
+	}
+	
+	public void incrementTimesAccessed() {
+		timesAccessed++;
 	}
 
 	@Override
 	public int compareTo(dataSet o) {
 		// TODO Auto-generated method stub
-		return this.getTimesAccessed().compareTo(o.getTimesAccessed());
+		return Integer.compare(this.getTimesAccessed(), o.getTimesAccessed());
 	}
-
+	
+    /**
+     * This will open the link saved in this object
+     * @param urlString
+     */
+    public void openWebpage() {
+    	
+    	try {	
+			Desktop.getDesktop().browse(new URL(link).toURI());
+		
+    	} catch (IOException | URISyntaxException e) {
+			;
+		}
+    }
 }

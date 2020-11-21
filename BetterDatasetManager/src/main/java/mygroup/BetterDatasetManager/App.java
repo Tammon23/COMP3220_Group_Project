@@ -2,17 +2,16 @@ package mygroup.BetterDatasetManager;
 
 import java.awt.Desktop;
 import java.awt.FlowLayout;
+import java.awt.GridLayout;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.net.URL;
-import java.util.Iterator;
-import java.util.List;
 
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 
 import org.json.JSONArray;
-import org.json.JSONObject;
 
 //TODO add functionality to the populate the allTags and allFileTypes attributes
 
@@ -27,73 +26,40 @@ public class App
     	//Swing components
     	JFrame portalFrame = new JFrame("Portal Frame");
     	PortalPanel portalPanel;
+    	PopularPanel popularPanel;
     	
-    	getSortedJSONArray(manager.getDatasets().toJSONArray(manager.getDatasets().names()));
     	
+    	//Set the program to terminate on frame close
     	portalFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    	//Set size of frame, arbitrarily
     	portalFrame.setSize(900,600);
-//    	portalFrame.setLayout(new FlowLayout());
+    	//Set the layout to rows and columns to fit all the panels on it
+    	portalFrame.setLayout(new GridLayout(4,1));
+    	//Allow the frame to actually be seen
     	portalFrame.setVisible(true);
     	
-    	portalPanel = new PortalPanel(manager);
-    	portalFrame.add(portalPanel);
+    	//Add the title of the section
+    	JLabel popDataLabel = new JLabel("Popular Data");
+    	popDataLabel.setHorizontalAlignment(JLabel.CENTER);
+    	portalFrame.add(popDataLabel);
     	
-    	portalFrame.revalidate();
-    	
-//    	// list of saved datasets
-//    	System.out.println("List of saved datasets:\n\n");
-//    	for (String key: manager.getDatasets().keySet()) {
-//    		System.out.println(key);
-//    	}
-  
-    	
-    	
-    }
-    
-    /**
-     * Given a string with HTTPS or HTTP, it will open it in the system's default browser
-     * @param urlString
-     */
-    public static void openWebpage(String url) {
-    	
-    	try {	
-			Desktop.getDesktop().browse(new URL(url).toURI());
-		
-    	} catch (IOException | URISyntaxException e) {
-			;
-		}
-    }
-    
-    
-    public static JSONArray getSortedJSONArray(JSONArray jsArr) {
-    	JSONArray jsonArr = jsArr;
-    	
-    	//jsArr has an element for each JSONObject in the file, hence each dataset is its own element in this JSONArray
-    	
-    	
-    	
-    	
-    	for(int i = 0; i < jsonArr.length(); i++) {
-    		System.out.println("JSONObject " + i + ": " + jsonArr.get(i));
-    	}
+    	//Add the newly instantiated popularPanel to the frame
+    	popularPanel = new PopularPanel(manager);
+    	portalFrame.add(popularPanel);
     	
 
+    	//Add the title of the section
+    	JLabel allDataLabel = new JLabel("All Data");
+    	allDataLabel.setHorizontalAlignment(JLabel.CENTER);
+    	portalFrame.add(allDataLabel);
+
+    	//Add the newly instantiated main panel to the frame
+    	portalPanel = new PortalPanel(manager);
+    	portalFrame.add(portalPanel);
+
+    	//Revalidate to make sure all the buttonsa re visible
+    	portalFrame.revalidate();
     	
-    	return jsonArr;
+    	
     }
 }
-/*
-   "example title 1":{
-      "link":"example link 1",
-      "title":"example title 1",
-      "desc":"example desc 1",
-      "tags":[
-         "tag v1 : 1",
-         "tag v2 : 1"
-      ],
-      "fileTypes":[
-         "ftype v1 : 1",
-         "ftype v2 : 1"
-      ]
-   }
-*/
