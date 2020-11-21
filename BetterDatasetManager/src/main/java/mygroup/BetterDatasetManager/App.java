@@ -1,19 +1,10 @@
 package mygroup.BetterDatasetManager;
 
-import java.awt.Desktop;
-import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.net.URISyntaxException;
-import java.net.URL;
-
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
-import org.json.JSONArray;
-
-//TODO add functionality to the populate the allTags and allFileTypes attributes
 
 public class App 
 {		
@@ -57,7 +48,7 @@ public class App
     	portalPanel = new PortalPanel(manager);
     	portalFrame.add(portalPanel);
 
-    	//Revalidate to make sure all the buttonsa re visible
+    	//Revalidated to make sure all the buttons are visible
     	portalFrame.revalidate();
     	
     	
