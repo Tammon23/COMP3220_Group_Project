@@ -33,8 +33,11 @@ public class PopularPanel extends JPanel{
 		for(int i = 0; i < 5; i++) {
 			final int index = i;
 			popularButtons[i] = new JButton(dataSets.get(i).getTitle());
-			popularButtons[i].setToolTipText(dataSets.get(i).getDesc());
-			
+			String tempDesc = dataSets.get(index).getDesc();
+			if(tempDesc.length() >= 100) {
+				tempDesc = tempDesc.substring(0, 100) + "...";
+			}
+			popularButtons[i].setToolTipText(tempDesc);			
 			popularButtons[i].addActionListener(new ActionListener() {
 
 				@Override

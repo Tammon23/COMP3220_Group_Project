@@ -39,7 +39,11 @@ public class PortalPanel extends JPanel{
 			final int index = i;
 			final dataSet tempDataSet = dataSets.get(index);
 			linkButtons[i] = new JButton(tempDataSet.getTitle());
-			linkButtons[i].setToolTipText(tempDataSet.getDesc());
+			String tempDesc = tempDataSet.getDesc();
+			if(tempDesc.length() >= 100) {
+				tempDesc = tempDesc.substring(0, 100) + "...";
+			}
+			linkButtons[i].setToolTipText(tempDesc);
 			
 			linkButtons[i].addActionListener(new ActionListener() {
 
