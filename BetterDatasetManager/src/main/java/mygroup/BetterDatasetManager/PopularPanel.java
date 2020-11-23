@@ -51,7 +51,7 @@ public class PopularPanel extends JPanel{
 						dataSets.get(index).incrementTimesAccessed();
 						
 						//Update JSON file now that a value was incremented
-						manager.saveToFile("test.json");
+						manager.saveToFile(Constants.INPUT_FILE_NAME);
 						
 					} catch (FileNotFoundException e1) {
 						// TODO Auto-generated catch block

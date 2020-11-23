@@ -1,20 +1,13 @@
 package mygroup.BetterDatasetManager;
 
-import java.awt.Desktop;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.net.URISyntaxException;
-import java.net.URL;
 import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JPanel;
-
-import org.json.JSONArray;
-import org.json.JSONObject;
 
 /**
  * This class is used to show all of the data found in the JSON file
@@ -26,6 +19,7 @@ public class PortalPanel extends JPanel{
 	private dataSetManager manager;
 	private ArrayList<dataSet> dataSets;
 	int numDataSets;
+	
 	
 	public PortalPanel(final dataSetManager manager) {
 		this.setLayout(new FlowLayout());
@@ -57,7 +51,7 @@ public class PortalPanel extends JPanel{
 						dataSets.get(index).incrementTimesAccessed();
 						
 						//Update json file now that a value was incremented
-						manager.saveToFile("test.json");
+						manager.saveToFile(Constants.INPUT_FILE_NAME);
 						
 					} catch (FileNotFoundException e1) {
 						// TODO Auto-generated catch block

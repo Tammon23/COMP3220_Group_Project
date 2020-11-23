@@ -2,9 +2,9 @@ package mygroup.BetterDatasetManager;
 
 import java.awt.GridLayout;
 import java.io.FileNotFoundException;
+
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-
 
 public class App 
 {		
@@ -12,7 +12,7 @@ public class App
     {
     	dataSetManager manager = new dataSetManager();
     	
-    	manager.loadFromFile("test.json");
+    	manager.loadFromFile(Constants.INPUT_FILE_NAME);
     	
     	//Swing components
     	JFrame portalFrame = new JFrame("Portal Frame");

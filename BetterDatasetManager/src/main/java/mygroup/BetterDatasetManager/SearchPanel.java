@@ -54,7 +54,7 @@ public class SearchPanel extends JPanel{
 				JPanel searchPanel = (JPanel) cb.getParent();
 				//Remove all components on the panel
 				searchPanel.removeAll();
-				//Readd the combobox
+				//Read the combobox
 				searchPanel.add(cb);
 				
 				//Now, add a button for all of these sets
@@ -77,7 +77,7 @@ public class SearchPanel extends JPanel{
 								System.out.println(setsWithTag.get(index).getTimesAccessed());
 								
 								//Update json file now that a value was incremented
-								manager.saveToFile("test.json");
+								manager.saveToFile(Constants.INPUT_FILE_NAME);
 								
 							} catch (FileNotFoundException e1) {
 								// TODO Auto-generated catch block
